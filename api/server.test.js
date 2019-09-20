@@ -47,6 +47,19 @@ describe('server.js', () => {
                     response = res;
                     expect(response.status).toBe(201);
                 })
+            });            
+        });
+        
+        describe('/api/auth/login', () => {
+            it('should return JSON object', () => {
+                let response;
+    
+                return request(server).post('/api/auth/login')
+                .then(res => {
+                    response = res;
+    
+                    expect(response.type).toEqual('application/json');
+                })
             });
 
             it('should send a 401 error if credentials are invalid', () => {
@@ -61,24 +74,8 @@ describe('server.js', () => {
                     response = res;
                     expect(response.status).toBe(401);
                 })
-            })
-            
-        });
-        
-        describe('/api/auth/login', () => {
-            it('should return JSON object', () => {
-                let response;
-    
-                return request(server).post('/api/auth/login')
-                .then(res => {
-                    response = res;
-    
-                    expect(response.type).toEqual('application/json');
-                })
             });
     
-        })
-        
+        });
     })
-    
 })
